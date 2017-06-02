@@ -1,0 +1,27 @@
+/***************************************************************************
+  * function-admin
+***************************************************************************/
+1- create menu:
+in function:  require_once get_template_directory().'/inc/function-admin.php';
+in function-admin:
+* creating menu and submenu: 
+ add_menu_page('Practice Theme Option', 'Practice', 'manage_options', 'nour_practice', 'practice_theme_create_page', 'dashicons-admin-customizer', 110);
+       //generate sub Admin page
+       // the first submenu is to avoid repeating of the menu page in submenu
+       add_submenu_page('nour_practice', 'Practice Theme Option', 'Theme Option', 'manage_options', 'nour_practice', 'practice_theme_create_page');
+       add_submenu_page('nour_practice', 'Practice Css Option', 'Css Settings', 'manage_options', 'nour_practice_css', 'practice_theme_support_css');
+
+       //add_action('admin_init', 'practice_admin_page');
+
+    }
+    add_action('admin_menu', 'practice_admin_page');
+
+    function practice_theme_create_page (){
+        echo '<h1>Theme admin</h1>'; 
+	// require_once (get_template_directory().'/inc/templates/practice-admin.php');
+
+    }
+    function practice_theme_support_css(){
+        echo '<h1>submenu css admin</h1>';
+
+    }

@@ -1,0 +1,107 @@
+/*
+	*SUMMARY
+- bloginfo('charset'); bloginfo('description');  bloginfo('name'); bloginfo('template_url'); bloginfo('stylesheet_url');
+- is_front_page(); is_active_sidebar('sidebar')):dynamic_sidebar('sidebar'); is_single()):
+- wp_title(); wp_head();wp_footer();
+- get_header(); get_footer(); get_template_part('content', get_post_format());
+- have_posts(): the_post() the_title(); the_content(); __('No Posts Found'); the_permalink();
+*/
+/*
+* header =>
+* footer
+* functions
+* index=> (home) change it to blog page in settings
+* front-page=>(home) like index. change in settings to static and make home page
+* aside=>
+* content=> check if signle if not permalink. check if has post thumbnail. the excerpt. if signle: comments_template
+* content-aside=> author the date the content
+* content-gallery => the title the content
+* page => sample page, if have post : the post title content else: __ no page found
+* sigle => signling out a post when click on permalink, if have posts : get template part('content'
+* archive =>
+* comments => $arg. wp_list_comments. $comments_args. comment_form.
+
+ + screenshot + style + folders
+
+*/
+
+/**************************************************************************
+  * header
+***************************************************************************/
+<html lang="<?php language_attributes(); ?>">
+<meta charset="<?php bloginfo('charset'); ?>">
+    <meta name="description" content="<?php bloginfo('description'); ?>">
+    <title><?php bloginfo('name'); ?> | <?php is_front_page()? bloginfo('description'): wp_title(); ?> </title>
+    <link href="<?php bloginfo('template_url'); ?>/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php bloginfo('stylesheet_url'); ?>" rel="stylesheet">
+    <?php wp_head(); ?>
+wp_nav_menu /* navwalker */
+
+
+
+/***************************************************************************
+  * footer
+***************************************************************************/
+
+    <p> &copy; <?php echo Date('Y'); ?>|<?php bloginfo('name')?> </p>
+<?php wp_footer(); ?>
+<script src="<?php bloginfo('template_url'); ?>/js/bootstrap.min.js"></script>
+
+
+/***************************************************************************
+  * index
+***************************************************************************/
+
+<?php get_header(); ?>
+//posts 
+<?php if ( have_posts() ):?>
+    <?php while(have_posts()): the_post() ?>
+	 <a href="<?php the_permalink(); ?>"> <?php the_title(); ?></a>
+         <p class="blog-post-meta"><?php the_time('F J, Y g:i a') ?> <a href="<?php echo get_author_posts_url(get_the_author_meta("ID")); ?>"><?php the_author(); ?></a></p>
+	 <?php if(has_post_thumbnail()) : ?>
+             <?php the_post_thumbnail(); ?>
+         <?php endif; ?>
+     <?php the_excerpt(); ?> // the content 
+     <?php endwhile; ?>
+     <?php  else: ?>
+    <?php __('No Posts Found'); ?>
+<?php endif; ?>
+
+
+<?php get_footer(); ?>
+
+/***************************************************************************
+  * function
+***************************************************************************/
+
+require_once('wp-bootstrap-navwalker.php');
+
+add_action('wp_enqueue_scripts', 'ukcoding_add_scripts');-----------------
+  wp_deregister_script('jquery');
+        wp_register_script('jquery', includes_url('/js/jquery/jquery.js'), false, '', true);
+        wp_enqueue_script('jquery');
+--------------------------------------------------------------------------
+
+add_action('after_setup_theme', 'wpb_theme_setup');----------------------
+featured image : add_theme_support('post-thumbnails'); // add featured image
+Lenght: function set_excerpt_length(){return 20;}
+	add_filter('excerpt_length', 'set_excerpt_length')
+Menu:     register_nav_menus( array(
+                'primary' => __( 'Primary Menu', 'THE MENU' ),
+            ) );
+Post formats: add_theme_support( 'post-formats', array( 'aside', 'gallery' ) );
+---------------------------------------------------------------------------
+add_action('widgets_init', 'wpb_init_widgets');----------------------------
+   register_sidebar(array(
+            'name'=> 'Box2',
+            'id'=> 'box2',
+            'before_widget'=> '<div class="box">',
+            'after_widget'=> '</div>',
+            'before_title'=> '<h3>',
+            'after_title'=> '</h3>'
+        ));
+----------------------------------------------------------------------------
+
+/***************************************************************************
+  * function-admin
+***************************************************************************/

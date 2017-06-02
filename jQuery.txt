@@ -1,0 +1,158 @@
+/*
+Index:
+1- start jQuery.
+2- use nice scroller.
+3- set header height.
+4- scroll down.
+5- slider + chevrons. 
+6- show display none.
+7- add and remove active class.
+8- switch between sign up and login (use data).
+9- placeholder: .focus .blur .data-text.
+10- confirm.
+11- offset and scroll.
+12- slider setInterval + click 
+*/
+
+/************************************************ [1]
+starting jQuery 
+$(function () {
+   'user strict';
+ 
+});
+
+/************************************************ [2]
+   //trigger nice scroller
+   $('html').niceScroll();
+
+/************************************************ [3]
+
+Controll header height
+
+    $('.header').height($(window).height());
+
+/************************************************ [4]
+    //scroll to features
+    $('.header .arrow i').click(function(){
+
+       $('html, body').animate({
+           scrollTop: $('.features').offset().top
+       }, 1000);
+
+    });
+
+/************************************************ [5]
+slider testimonial 
+
+  //testimonial check active
+    var rightArrow = $('.fa-chevron-right');
+    var leftArrow = $('.fa-chevron-left');
+
+   function checkClient() {
+       $('.client:first').hasClass('active')? leftArrow.fadeOut():leftArrow.fadeIn();
+       $('.client:last').hasClass('active')? rightArrow.fadeOut():rightArrow.fadeIn();
+   }
+    checkClient();
+
+   //
+    $('.testim i').click(function () {
+       if($(this).hasClass('fa-chevron-right')){
+           $('.testim .active').fadeOut(100, function () {
+              $(this).removeClass('active').next('.client').addClass('active').removeClass('hidden').fadeIn();
+              checkClient();
+
+           });
+       }else{
+           $('.testim .active').fadeOut(100, function () {
+               $(this).removeClass('active').prev('.client').addClass('active').removeClass('hidden').fadeIn();
+               checkClient();
+
+           });
+
+       }
+
+    });
+/************************************************ [6]
+show display none items
+
+ //show hidden items in our works
+    $('.show-mode').click(function () {
+       $('.hidden').fadeIn(2000);
+       $('.show-mode').prop("disabled", true);
+    });
+/************************************************ [7]
+ //add and remove active class
+    $('.links li').click(function () {
+       $(this).addClass('active').siblings().removeClass('active');
+    });
+/************************************************ [8]
+
+  // Switch Between Login & Signup
+
+    $('.login-page h1 span').click(function () {
+
+        $(this).addClass('selected').siblings().removeClass('selected');
+
+        $('.login-page form').hide();
+
+        $('.' + $(this).data('ig')).fadeIn(100);
+
+    });
+
+/************************************************ [9]
+
+//placeholder on .focus .blur
+	$('[placeholder]').focus(function () {
+
+		$(this).attr('data-text', $(this).attr('placeholder'));
+
+		$(this).attr('placeholder', '');
+
+	}).blur(function () {
+
+		$(this).attr('placeholder', $(this).attr('data-text'));
+
+	});
+/************************************************ [10]
+//confirm 
+$('.confirm').click(function () {
+
+		return confirm('Are You Sure?');
+
+	});
+
+
+/************************************************ [11]
+
+ $(window).scroll(function () {
+     console.log($('.offset').offset().top);
+     var offsetDiv = $('div').offset().top,
+         scroll = $(this).scrollTop();
+
+     if(scroll >= offsetDiv){
+         $('div').fadeOut();
+     }
+   
+ });
+
+/************************************************ [12]
+    var slider = $('.slider'),
+        children = slider.children('li'),
+        lenght = children.length,
+        i = 0,
+    changeList = function () {
+        children.eq(i).fadeOut(100,function () {
+            i ++;
+            if(i === lenght){
+                i = 0;
+            }
+            children.eq(i).fadeIn();
+        });
+        
+    };
+    children.not(':first').hide();
+
+   setInterval(changeList, 5000);
+   $('i').click(function () {
+      changeList();
+   });

@@ -1,0 +1,141 @@
+1- install ruby + gem install sass
+2- ruby command properties add the path
+3- create file.scss 
+4- create compiled directory 
+5- ruby watch => sass --watch C:\Users\nourw\Desktop\themes\sass:C:\Users\nourw\Desktop\themes\sass\complied
+6- compile => sass C:\Users\nourw\Desktop\themes\sass\style.scss C:\Users\nourw\Desktop\themes\sass\complied\home.css
+7- varialbe $main-color: #fff; 
+8- Nesting: .parent {
+ 
+		 font-size:25px;
+		
+  &:hover{
+ 
+			   background-color:green;
+		
+  }
+  
+		
+  .class1{
+
+			    height:400px;
+			
+    background-color:red;
+
+		  }
+
+		  .class2{
+		
+   }
+		
+
+} 
+9-Math: $mainSize + 4; $mainWidth / 4; 
+10- extend : @extend .main;
+11- placeholder extend : @extend %main; 
+12- beacuse we are watching folder when we create .scss file for importing without compiling _nour.scss + @import "";
+13- mixin (function) div {
+ 
+			border:3px solid #ccc;
+  
+			height:80px;
+  
+}
+
+			@mixin br($p){
+			
+  border-radius:$p;
+}
+			
+.class1 {
+
+			  @include br(20px);
+}
+			
+.class2 {
+  @include br(50px);
+}
+14- if condition 
+$floatleft: left;
+$floatright: right;
+$direction : ltr ;
+@if $direction == ltr {
+    $floatleft: left;
+    $floatright: right;
+}@else{
+    $floatleft: right;
+    $floatright: left;
+}
+15- for loop
+@for $i from 1 through 4 {
+  .class#{$i}{
+    font-size: 16px + $i;
+  }
+}
+		to 4 without class 4 
+15-1- more about for and grid 
+@for $i from 1 through 12 {
+  .col-#{$i}{
+    float: left;
+    padding:10px;
+    background-color:#ccc;
+    border: 1px solid #222;
+    width:(100% / (12/$i) );
+    margin-left:10px;
+  }
+}
+15-2- more about for and extend 
+%grid {
+   float: left;
+    padding:10px;
+    background-color:#ccc;
+    border: 1px solid #222;
+    margin-left:10px;
+}
+@for $i from 1 through 12 {
+  .col-#{$i}{
+    width:(100% / (12/$i) );
+    @extend %grid;
+    
+  }
+}
+16- each 
+$socialLists: facebook twitter instagram; 
+@each $social in $socialLists {
+  .#{$social}{
+    background: url('images/#{$social}.png');
+  }
+} 
+16-b- multiple assignement @each $social, $color in 
+(facebook, blue),
+(twitter, green),
+(instagram, pink){
+  .#{$social}{
+    background: url('images/#{$social}.png');
+    color: $color;
+  }
+}
+you can add more assignments in (facebook, blue, 18px)
+16-c- $map: (h1: 50px, h2: 40px, h3: 30px);
+@each $key, $val in $map {
+ #{$key}{
+  font-size: $val * 2; 
+ } 
+}
+17- while loop
+$x: 12;
+@while $x > 0 {
+ .col-#{$x}{
+   width:(100% / (12/$x));
+ }
+ $x: $x - 1;
+}
+18- function 
+@function fontsize($el){
+  @return $el +10;
+}
+.class {
+  font-size: fontsize(2);
+}
+19- change style from nasted to expanded 
+sass --watch C:\Users\nourw\Desktop\themes\sass\css:C:\Users\nourw\Desktop\themes\sass\css --style expanded

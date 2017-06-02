@@ -1,0 +1,80 @@
+/*
+1-grab elemts by tagname or by classname or by selector // not compatible with E8
+2-grab title, images and its src and length
+3-grab forms and its value and type and specify which element by name
+4-innertHTML outerHTNL textContent
+5-change attribute .id .className change also src of img or other attribute/ you can grab them with querySelector
+
+*/
+
+var myElement = document.getElementsByTagName('p');
+var myElement = document.getElementsByClassName('classTest');
+var myElement = document.querySelectorAll('p.classTest');
+console.log(myElement.length);
+myElement[0].innerHTML = 'changed';//element(s)
+/*****
+******
+var myDiv = document.getElementById('test');
+myDiv.innerHTML = document.title;
+myDiv.innerHTML = document.images[0].src;
+myDiv.innerHTML = document.images.length
+myDiv.innerHTML = document.images[0].src + document.images[1].src;//how to make it better 
+
+var myDiv = document.getElementById('test'),//coma
+i;
+for(i = 0 ; i < document.images.length; i = i+1) {
+    document.write(document.images[i].src + '<br>');
+}
+
+
+/*******
+********
+myDiv.innerHTML; // 
+    this is main <span>text</span>
+myDiv.outerHTML; //<div id="main">
+    this is main <span>text</span>
+</div>
+myDiv.textContent; // this is main text
+myDiv.innerHTML = 'this is the new <span>text</span>' // this is the new text
+
+in HTML 
+<img src="http://placehold.it/100/100">
+<img src="http://placehold.it/200/100">
+/***************
+1-document.form
+****************/
+var myDiv = document.getElementById('test');
+myDiv.innerText = document.forms.length;
+myDiv.innerText = document.forms[0].form1.value;
+myDiv.innerText = document.forms[0].form1.type;
+change type 
+myDiv.innerText = document.forms[0].form1.type = 'password';
+
+HTML
+<form>
+    <input name="form1" value="some value">
+</form>
+<form>
+/***********
+document.body
+************/
+var myDiv = document.getElementById('test');
+myDiv.innerText = document.body.innerHTML;
+if(document.body.innerText.indexOf('hello') > -1){
+    console.log('exists');
+}else{
+    console.log('nop');
+}
+
+
+myDiv.innerText = document.anchors.length; // href count
+myDiv.innerText = document.links.length;// a count
+
+    <input name="form2">
+</form>
+/*********
+*******/
+myDiv.id = 'new-id';
+myDiv.className = 'class-from-js';
+myImg = document.querySelector('img');
+myImg.src ='http://placehold.it/200/000';

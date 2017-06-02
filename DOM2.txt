@@ -1,0 +1,54 @@
+myInput.onkeyup = function
+	.onmouseenter 
+	.onmouseleave
+	.oncontextmenu
+	.onblur 
+	.onfocus
+	.onclick
+
+window.onscroll
+onload onscroll onresieze .ondblclick
+
+console.log('');
+alert();
+
+ document.getElementById
+	.getElementsByTagName
+	.querySelectorAll
+	.getElementsByClassName
+	.querySelector
+	.anchors.length;
+	.links.length
+	.body.innerText.indexOf
+	.forms.length;
+	.forms[0].form1.value;
+	.images[0].src;
+	.write
+
+ myInput.value =
+	.value.length 
+	.length
+	.innerHTML
+	.outerHTML;
+	.textContent
+	.style.backgroundColor
+	.setAttributeNode
+	.setAttribute
+	.removeAttribute
+	.createAttribute
+	.appendChild
+	.createTextNode
+	.createElement
+	.createTextNode
+	.clientHeight
+	.childNodes 
+	.className +='addToClass';
+	.classList.add('add','class3');
+	.onmouseover
+	.onchange
+	.onkeyup 
+	.classList.remove('cool');
+	.classList.toggle('cool');
+	.classList.contains
+	.className 
+	.id 

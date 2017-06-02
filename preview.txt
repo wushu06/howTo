@@ -1,0 +1,26 @@
+1-libraries
+jquery donload 
+font-awesome
+normalize css
+nicerscroll // start using it $('html').niceScroll();
+2-design header
+.container => position: relative;
+.header background url + size : cover
+.overlay background rgba
+.navrbar overflow:hidden position absolute
+.navrbar links float: right
+font from google  
+height same as window height using jquery
+    $('.header').height($(window).height());
+.arrow postion absolut text-align center
+**********
+working with table
+.table {
+    height: 100%;
+    display: table
+}
+
+.table-row {
+    display: table-row
+}
+3-features

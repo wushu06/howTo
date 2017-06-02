@@ -1,0 +1,19 @@
+/*
+1- boxslider
+2- wow scroll animation.
+*/
+
+
+************************************************** [01]
+ <link rel="stylesheet" href="css/jquery.bxslider.min.css"> 
+		
+<ul class="bxslider"> 
+
+<script src="js/jquery.bxslider.min.js"></script>
+
+ $('.bxslider').bxSlider({
+        mode: 'fade',
+        captions: true
+    });
+
+************************************************** [02]

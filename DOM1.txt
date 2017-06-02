@@ -1,0 +1,194 @@
+/*
+1-grab elemts by tagname or by classname or by selector // not compatible with E8
+2-grab title, images and its src and length
+3-grab forms and its value and type and specify which element by name
+4-innertHTML outerHTNL textContent
+5-change attribute .id .className change also src of img or other attribute/ you can grab them with querySelector
+6- getAttribute / myImg.setAttribute('src', 'http://placehold.it/200/000') / hasAttribute / removeAttribute /
+7- myDiv.classList /myDiv.classList.length /myDiv.classList.contains('this'); /
+8- function: onclick in html in java 
+9- onkeyup onkeydown onkeypress onmouseover onmouseout onchange
+10- var myString //console.log(typeof (myString)); console.log(myString.length); / var myNew = myNumber.toString();
+11- looking for string myString.indexOf('the word') / myString.search(/word/i)
+12-classList add remove toggle
+13-
+*/
+/******************************************************** [1]
+var myElement = document.getElementsByTagName('p');
+var myElement = document.getElementsByClassName('classTest');
+var myElement = document.querySelectorAll('p.classTest');
+console.log(myElement.length);
+myElement[0].innerHTML = 'changed';//element(s)
+/******************************************************** [2]
+var myDiv = document.getElementById('test');
+myDiv.innerHTML = document.title;
+myDiv.innerHTML = document.images[0].src;
+myDiv.innerHTML = document.images.length
+myDiv.innerHTML = document.images[0].src + document.images[1].src;//how to make it better 
+
+var myDiv = document.getElementById('test'),//coma
+i;
+for(i = 0 ; i < document.images.length; i = i+1) {
+    document.write(document.images[i].src + '<br>');
+}
+
+
+myDiv.innerHTML; // 
+    this is main <span>text</span>
+myDiv.outerHTML; //<div id="main">
+    this is main <span>text</span>
+</div>
+myDiv.textContent; // this is main text
+myDiv.innerHTML = 'this is the new <span>text</span>' // this is the new text
+
+in HTML 
+<img src="http://placehold.it/100/100">
+<img src="http://placehold.it/200/100">
+/******************************************************** [3]
+var myDiv = document.getElementById('test');
+myDiv.innerText = document.forms.length;
+myDiv.innerText = document.forms[0].form1.value;
+myDiv.innerText = document.forms[0].form1.type;
+change type 
+myDiv.innerText = document.forms[0].form1.type = 'password';
+
+HTML
+<form>
+    <input name="form1" value="some value">
+</form>
+<form>
+/***********
+document.body
+************/
+var myDiv = document.getElementById('test');
+myDiv.innerText = document.body.innerHTML;
+if(document.body.innerText.indexOf('hello') > -1){
+    console.log('exists');
+}else{
+    console.log('nop');
+}
+
+
+myDiv.innerText = document.anchors.length; // href count
+myDiv.innerText = document.links.length;// a count
+
+    <input name="form2">
+</form>
+/*********
+*******/
+myDiv.id = 'new-id';
+myDiv.className = 'class-from-js';
+myImg = document.querySelector('img');
+myImg.src ='http://placehold.it/200/000';
+myImg.getAttribute('src')
+/*****************
+var myDiv = document.getElementById('test');
+if(myDiv.classList.contains('classList')){
+    console.log('yes');
+}
+
+if(myDiv.classList.contains('classList')){
+   myDiv.setAttribute('class','changed');
+}
+/**********************
+window.onload 
+window.ondblclick
+window.onclick = function () {
+    console.log('clocked');
+}
+/*************
+ function myFun () {
+    console.log('clicked');
+}
+<button id="button" onclick="myFun()">change</button>
+/**********************
+var myDiv = document.getElementById('test');
+var myInput = document.querySelector('input');
+ function myFun () {
+   myDiv.innerHTML = myInput.value * 3.75;
+}
+or 
+var button = document.getElementById('button');
+var myDiv = document.getElementById('test');
+var myInput = document.querySelector('input');
+ button.onclick = function  () {
+   myDiv.innerHTML = myInput.value * 3.75;
+};
+or
+myInput.onkeyup = function  () {
+   myDiv.innerHTML = myInput.value * 3.75;
+};
+myInput.onkeyup = function (){
+    console.log(myInput.value);
+};
+/******************************
+myInput.onmouseover = function (){
+    console.log('over');
+};
+myCurrency.onchange= function (){
+  myDiv.innerHTML = myInput.value * myCurrency.value;
+
+};
+HTML
+<input name="input1" type="text" value="">
+    <select id="currency">
+        <option value="2">Euro</option>
+        <option value="3">Pound</option>
+
+        <option value="4">Dollar</option>
+
+    </select>
+/*********************
+myInput.onkeyup = function () {
+    if (myInput.value.length < 4){
+       myDiv.setAttribute('class','changed')
+    }else{
+        myDiv.setAttribute('class','correct')
+
+    }
+}
+/********************
+myDiv.className +='addToClass';
+ myDiv.classList.add('add','class3');
+myDiv.classList.remove('cool');
+myDiv.classList.toggle('cool');
+/****************************
+myDiv.childElementCount // 
+myDiv.children[1]
+myDiv.childNodes 
+/**************************
+myDiv.clientHeight
+/******************
+myDiv.style.backgroundColor = '#ff0000'; // camel case
+/**************************
+var myElemet = document.createElement('div');
+document.body.appendChild(myElemet);
+
+var myText = document.createTextNode('this my new text');
+myElemet.appendChild(myText);
+/*************
+myAttr = document.createAttribute('class');
+myAttr.value = 'custom';
+myDiv.setAttributeNode(myAttr);
+//onload onscroll onresieze
+window.onscroll = function () {
+    myDiv.style.backgroundColor = 'green';
+}
+/**********
+myInput.onfocus = function (){
+    myInput.value ='write a username';
+};
+myInput.onblur = function () {
+    if(myInput.value.length < 4) {
+        myDiv.innerHTML = 'username not long enough';
+    }
+
+};
+
+/********
+myElemet.oncontextmenu = function // right click
+.onmouseenter // hover with mouse
+.onmouseleave
+myInput.onkeyup = function (){
+    myDiv.textContent =this.value;
+};

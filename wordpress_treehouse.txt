@@ -1,0 +1,56 @@
+*- Link google font CDN: 
+	wp_enqueue_style( 'googlefont_css', 'http://fonts.googleapis.com/css?family=Asap:400,700,400italic,700italic' );
+*- dependancy for jquery plugins add array('jquery')
+	wp_enqueue_script( 'foundation_js', get_template_directory_uri() . '/js/foundation.min.js', array('jquery'), '', true );
+*- no conflict jQuery in order to work with $ in wordpress: 
+	jQuery(document).ready(function($) {});
+*- Index serves as back up or default template for all other pages. You can override it by creating other template pages.
+	meaning=> when create new pages inside wordpress they will be controlled by index.php.
+	also => the new created and existed posts will be shown by the index.php 
+	static page => if you want to change the default home page from index to another page you can either go to "customize" or "setting"
+*- the page.php control static pages 
+	meaning => the other pages been created on wordpress excepte the one choosen as Home Page(index)
+	also => if you want to change the look you can by editing page.php
+*- the page-sidebar-left and page-portfolio.php: must add comment at the top to tell wordpress what template it is
+	/* 
+ 	 Template Name: Portfolio Page
+	*/
+	meaning => to give out the option of either using the normal page.php or different style of page.php with sidebar or with portfolio.
+*- navigation: 1- add theme support because wp by default wont give menu option
+	2- tell wordpress we have specific menu set up via function.php
+	function register_theme_menus() {
+	register_nav_menus(
+		array(
+			'primary-menu' 	=> __( 'Primary Menu', 'treehouse-portfolio' )			
+		)
+	);
+	}
+	add_action( 'init', 'register_theme_menus' );
+	3- tell wordpress where our menu will be sitting. so in header
+	 <?php 
+         $defaults = array(
+        'container' => false,
+        'theme_location'  => 'primary-menu',
+        'menu_class'  => 'no-bullet'
+        );
+        wp_nav_menu( $defaults );
+        ?>
+*- custom post types: additional piece of content seperate fron pages or posts in wordpress
+	1- install two plugins 
+	2- add the type and the field
+	3- insert the post 
+	4- wp_query 
+*- single.php => when click on permalink 
+	single-$posttype.php
+*- home.php : create page blog and set in customize the blog to blog page whcich is controlled by home.php (confusing)
+*- front-page.php: front page instead of index.php
+*- archive.php : when click on categories
+*- show all content or just 4 for front-page $num_posts = ( is_front_page() ) ? 4 : -1;
+*- sidebars: 1- function register_widget
+	2- create sidebar.php and call if(! dynamic_sidebar('page'))
+	3- call sidebar in archive for example get_sidebar();
+*- shortcuts: plugin for foundation shortcuts
+*- test website wp_config turn debug true
+	wordpress website checklist 	
+	theme check plugin
+
